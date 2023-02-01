@@ -1,11 +1,12 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write \"**/*.{js,ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{js,ts,tsx,md}\"",
+    "postinstall": "npx playwright install"
   },
   "prettier": {
     "arrowParens": "always",
@@ -16,12 +17,17 @@
   "dependencies": {
     "@headlessui/react": "1.7.7",
     "clsx": "1.2.1",
+    "deepl-node": "1.8.0",
     "next": "latest",
+    "playwright": "1.30.0",
+    "playwright-aws-lambda": "0.9.0",
+    "playwright-core": "1.30.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "styled-components": "6.0.0-beta.2",
     "styled-jsx": "5.1.0",
-    "use-count-up": "3.0.1"
+    "use-count-up": "3.0.1",
+    "cohere-ai": "5.0.2"
   },
   "devDependencies": {
     "@types/node": "18.0.3",
