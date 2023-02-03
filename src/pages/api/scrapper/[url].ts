@@ -1,3 +1,5 @@
+import { getClassification } from '@/lib/cohere';
+import { generatePrompt } from '@/lib/generatePrompt';
 import { translate } from '@/lib/translate';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import * as playwright from 'playwright-aws-lambda';
@@ -42,6 +44,12 @@ export default async function handler(
 
   const data = [];
   for (const review of reviews) {
+    // Get screenshot of the review
+    const screenshot = await review.screenshot();
+
+    // Convert screenshot to base64
+    const base64 = screenshot.toString('base64');
+
     // Get the review body from data-hook="review-body" > span
     const reviewBody = await review.$eval(
       '[data-hook="review-body"] > span',
@@ -58,11 +66,29 @@ export default async function handler(
       (el) => el.textContent,
     );
 
+    const translated = await translate(reviewBody as string);
+
+    // Necesitamos sacar el category de una query string
+    const prompt = generatePrompt('Electronics_5', {
+      body: translated,
+      originalBody: reviewBody as string,
+      title: reviewTitle as string,
+      rating: parseRating(reviewRating as string),
+    });
+
+    const result = await getClassification([prompt]);
+
     data.push({
-      body: await translate(reviewBody as string),
+      body: translated,
       originalBody: reviewBody,
       title: reviewTitle,
       rating: parseRating(reviewRating as string),
+      classification: {
+        label: result[0].prediction,
+        confidence: result[0].confidence,
+        labels: result[0].labels,
+      },
+      screenshot: base64,
     });
   }
 
