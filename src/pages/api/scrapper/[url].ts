@@ -39,15 +39,24 @@ export default async function handler(
 
   // Get all data-hook="review" elements
   const reviews = await page.$$('[data-hook="review"]');
-  
+
   const data = [];
   for (const review of reviews) {
     // Get the review body from data-hook="review-body" > span
-    const reviewBody = await review.$eval('[data-hook="review-body"] > span', (el) => el.textContent);
+    const reviewBody = await review.$eval(
+      '[data-hook="review-body"] > span',
+      (el) => el.textContent,
+    );
     // Get the review title from data-hook="review-title" > span
-    const reviewTitle = await review.$eval('[data-hook="review-title"] > span', (el) => el.textContent);
+    const reviewTitle = await review.$eval(
+      '[data-hook="review-title"] > span',
+      (el) => el.textContent,
+    );
     // Get the review rating from data-hook="review-star-rating" > span > i
-    const reviewRating = await review.$eval('[data-hook="review-star-rating"] > span', (el) => el.textContent);
+    const reviewRating = await review.$eval(
+      '[data-hook="review-star-rating"] > span',
+      (el) => el.textContent,
+    );
 
     data.push({
       body: await translate(reviewBody as string),
