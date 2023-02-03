@@ -1,38 +1,100 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
 
-## Getting Started
+<!--
+<a href="lyrai.vercel.app">
+<img src="./public/img/banner_gh.jpg" />
+</a>
+-->
 
-First, run the development server:
+<p></p>
+
+<a href="https://lyrai.vercel.app">Explore</a>
+<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
+<a href="#-getting-started">Getting Started</a>
+<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
+<a href="#-api-routess">Api Routes</a>
+
+![GitHub stars](https://img.shields.io/github/stars/MiduTeam/lyra-ai)
+![GitHub issues](https://img.shields.io/github/issues/MiduTeam/lyra-ai)
+![GitHub license](https://img.shields.io/github/license/MiduTeam/lyra-ai)
+![GitHub forks](https://img.shields.io/github/forks/MiduTeam/lyra-ai)
+
+</div>
+
+## 👋 Team
+
+- [**@srdrabx**](https://github.com/nachoaldamav) - Nacho Aldama.
+- [**@pheralb**](https://github.com/pheralb) - Pablo Hdez.
+- [**@afor_digital**](https://github.com/aforina) - Sara Montagud.
+- [**@ikurotime**](https://github.com/ikurotime) - David Huertas.
+- [**@tmchein**](https://github.com/tmchein) - Juan Rojas.
+
+## 🛠️ Stack
+
+- [**Cohere**](https://cohere.ai/) - Making NLP part of every developer's toolkit.
+- [**Next.js 13 with /app folder + Typescript**](https://nextjs.org/) - The React Framework.
+- [**Tailwind CSS + clsx**](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs.
+- [**HeadlessUI**](https://headlessui.dev/) - unstyled, fully accessible UI components.
+- [**Playwright**](https://playwright.dev/) - Node library to automate Chromium, Firefox and WebKit with a single API.
+
+## 🚀 Getting Started
+
+1. Clone or fork this repository:
+
+```bash
+git@github.com:MiduTeam/lyra-ai.git
+```
+
+2. Install dependencies with your favorite package manager:
+
+```bash
+npm i
+# or
+yarn install
+# or
+pnpm install
+# or
+ultra install
+```
+
+3. Create a **.env** file in the root of the project and add the following variables:
+
+```bash
+COHERE_KEY=
+```
+
+4. Run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
 # or
-pnpm dev
+pnpm run dev
+# or
+ultra dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+✨ Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Api Routes
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- **Check**: `src/pages/api`
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+| --  | Type   | Url                        | Description             | Params                | Info                                               |
+| --- | ------ | -------------------------- | ----------------------- | --------------------- | -------------------------------------------------- |
+| ⚙️  | `GET`  | `/api/scrapper/`           | Scrap Amazon website    | `url`                 | 🛠️ Only [encoded](https://www.urlencoder.org/) url |
+| ⚙️  | `GET`  | `/api/get-screen/`         | Get screenshot          | `url`                 | -                                                  |
+| ⚙️  | `POST` | `/api/get-classification/` | Get classification list | `product`, `category` | -                                                  |
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## ⭐ Contributing
 
-## Learn More
+<a href="https://github.com/miduteam/lyra-ai/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=miduteam/lyra-ai" />
+</a>
 
-To learn more about Next.js, take a look at the following resources:
+<p></p>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ☁️ Deploy on Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [https://lyrai.vercel.app/](https://lyrai.vercel.app/).
