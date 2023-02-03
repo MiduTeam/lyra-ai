@@ -1,24 +1,104 @@
-# Next.js + Turbopack App Directory Playground
+<div align="center">
 
-[Turbopack](https://turbo.build/pack) is a new incremental bundler optimized for JavaScript and TypeScript, written in Rust by the creators of Webpack and Next.js at [Vercel](https://vercel.com). On large applications Turbopack updates 10x faster than Vite and 700x faster than Webpack ([benchmark](https://turbo.build/pack/docs/benchmarks)). For the biggest applications the difference grows even more stark with updates up to 20x faster than Vite.
+<!--
+<a href="lyrai.vercel.app">
+<img src="./public/img/banner_gh.jpg" />
+</a>
+-->
 
-This playground is a mirror of the [Next.js v13 App Directory Playground](https://github.com/vercel/app-playground), but uses Turbopack as the Next.js development server (`next dev --turbo`).
+<p></p>
 
-**As a reminder, Turbopack is currently in alpha and not yet ready for production. We appreciate your ongoing support as we work to make it ready for everyone.**
+<a href="https://lyrai.vercel.app">Explore</a>
+<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
+<a href="#-getting-started">Getting Started</a>
+<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
+<a href="#-api-routes">Api Routes</a>
+<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
+<a href="https://midu.dev/">midudev Hackathon</a>
 
-## Running Locally
+![GitHub stars](https://img.shields.io/github/stars/MiduTeam/lyra-ai)
+![GitHub issues](https://img.shields.io/github/issues/MiduTeam/lyra-ai)
+![GitHub license](https://img.shields.io/github/license/MiduTeam/lyra-ai)
+![GitHub forks](https://img.shields.io/github/forks/MiduTeam/lyra-ai)
 
-1. Install dependencies: `yarn`
-1. Start the dev server: `yarn dev`
+</div>
 
-**Note:** The playground uses [Tailwind CSS](https://tailwindcss.com) via [PostCSS](https://turbo.build/pack/docs/features/css#postcss).
+## 👋 Team
 
-For more information, see: https://turbo.build/pack/docs/features/css#tailwind-css
+- [**@srdrabx**](https://github.com/nachoaldamav) - Nacho Aldama.
+- [**@pheralb**](https://github.com/pheralb) - Pablo Hdez.
+- [**@afor_digital**](https://github.com/aforina) - Sara Montagud.
+- [**@ikurotime**](https://github.com/ikurotime) - David Huertas.
+- [**@tmchein**](https://github.com/tmchein) - Juan Rojas.
 
-## Documentation
+## 🛠️ Stack
 
-https://nextjs.link/with-turbopack
+- [**Cohere**](https://cohere.ai/) - Making NLP part of every developer's toolkit.
+- [**Next.js 13 with /app folder + Typescript**](https://nextjs.org/) - The React Framework.
+- [**Tailwind CSS + clsx**](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs.
+- [**Prettier + prettier-plugin-tailwindcss**](https://prettier.io/) - A Prettier plugin for sorting Tailwind CSS classes.
+- [**HeadlessUI**](https://headlessui.dev/) - unstyled, fully accessible UI components.
+- [**Playwright**](https://playwright.dev/) - Node library to automate Chromium, Firefox and WebKit with a single API.
+- [**Zod**](https://zod.dev/) - TypeScript-first schema validation.
 
-## Providing Feedback
+## 🚀 Getting Started
 
-https://nextjs.link/turbopack-feedback
+1. Clone or fork this repository:
+
+```bash
+git@github.com:MiduTeam/lyra-ai.git
+```
+
+2. Install dependencies with your favorite package manager:
+
+```bash
+npm i
+# or
+yarn install
+# or
+pnpm install
+# or
+ultra install
+```
+
+3. Create a **.env** file in the root of the project and add the following variables:
+
+```bash
+COHERE_KEY=
+```
+
+4. Run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm run dev
+# or
+ultra dev
+```
+
+✨ Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## 📦 Api Routes
+
+- **Check**: `src/pages/api`
+
+| --  | Type   | Url                        | Description             | Params                | Info                                               |
+| --- | ------ | -------------------------- | ----------------------- | --------------------- | -------------------------------------------------- |
+| ⚙️  | `GET`  | `/api/scrapper/`           | Scrap Amazon website    | `url`                 | 🛠️ Only [encoded](https://www.urlencoder.org/) url |
+| ⚙️  | `GET`  | `/api/get-screen/`         | Get screenshot          | `url`                 | -                                                  |
+| ⚙️  | `POST` | `/api/get-classification/` | Get classification list | `product`, `category` | -                                                  |
+
+## ⭐ Contributing
+
+<a href="https://github.com/miduteam/lyra-ai/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=miduteam/lyra-ai" />
+</a>
+
+<p></p>
+
+## ☁️ Deploy on Vercel
+
+- [https://lyrai.vercel.app/](https://lyrai.vercel.app/).
