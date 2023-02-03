@@ -12,7 +12,9 @@
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
 <a href="#-getting-started">Getting Started</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
-<a href="#-api-routess">Api Routes</a>
+<a href="#-api-routes">Api Routes</a>
+<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
+<a href="https://midu.dev/">midudev Hackathon</a>
 
 ![GitHub stars](https://img.shields.io/github/stars/MiduTeam/lyra-ai)
 ![GitHub issues](https://img.shields.io/github/issues/MiduTeam/lyra-ai)
@@ -34,8 +36,10 @@
 - [**Cohere**](https://cohere.ai/) - Making NLP part of every developer's toolkit.
 - [**Next.js 13 with /app folder + Typescript**](https://nextjs.org/) - The React Framework.
 - [**Tailwind CSS + clsx**](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs.
+- [**Prettier + prettier-plugin-tailwindcss**](https://prettier.io/) - A Prettier plugin for sorting Tailwind CSS classes.
 - [**HeadlessUI**](https://headlessui.dev/) - unstyled, fully accessible UI components.
 - [**Playwright**](https://playwright.dev/) - Node library to automate Chromium, Firefox and WebKit with a single API.
+- [**Zod**](https://zod.dev/) - TypeScript-first schema validation.
 
 ## 🚀 Getting Started
 
