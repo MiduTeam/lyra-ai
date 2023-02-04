@@ -1,7 +1,8 @@
 'use client';
 import { Product } from '@/lib/generatePrompt';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RoughNotation, RoughNotationGroup } from 'react-rough-notation';
+import { calculateRating } from 'utils/generateRating';
 import RootLayout from './layout';
 
 export default function Home() {
@@ -87,7 +88,7 @@ export default function Home() {
               </div>
               <div>
                 <span className="font-bold ">Rating</span>
-                <p className="text-3xl">{'⭐️'.repeat(review.rating)}</p>
+                <p className="text-3xl">{calculateRating(review.rating)}</p>
               </div>
             </div>
           </div>
@@ -99,7 +100,7 @@ export default function Home() {
           <p className="text-sm">
             {' '}
             {year} Lyra AI. Developed with 💜 by @ikurotime - @afor_digital -
-            @SrDrabx - @pheralb_ - @TMChein.
+            @SrDrabx - @pheralb_ - @TMCheiN.
           </p>
         </div>
       </footer>
