@@ -80,7 +80,7 @@ export default function Home() {
           <p className="text-sm">
             {' '}
             {year} Lyra AI. Developed with 💜 by @ikurotime - @afor_digital -
-            @SrDrabx - @pheralb_ - @TMChein.
+            @SrDrabx - @pheralb_ - @TMCheiN.
           </p>
         </div>
       </footer>
