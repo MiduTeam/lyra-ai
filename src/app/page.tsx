@@ -1,22 +1,39 @@
 'use client';
+import type { Product } from '@/lib/generatePrompt';
 import ListOfReviews from '@/components/Review/ListOfReviews';
 import ReviewFrame from '@/components/ReviewFrame';
-import { Product } from '@/lib/generatePrompt';
-import { useState } from 'react';
+import { getReview } from '@/lib/fetchReview';
+import { useEffect, useState } from 'react';
 import { RoughNotation } from 'react-rough-notation';
+import { getRateLimit } from '@/lib/rateLimit';
 
 export default function Home() {
   const year = new Date().getFullYear();
   const [input, setInput] = useState<string>('');
   const [reviews, setReviews] = useState<Product[]>([]);
-  const url =
-    'https%3A%2F%2Fwww.amazon.es%2FXiaomi-S-Calefactor-Inteligente-Impermeabilidad-Anti-Deslizante%2Fdp%2FB08J494KHH';
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [rate, setRateLimit] = useState<number>(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const rate = getRateLimit();
+      setRateLimit(rate);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const fetchReview = async () => {
-    await fetch('/api/scrapper/' + encodeURIComponent(input))
-      .then((res) => res.json())
+    setLoading(true);
+    await getReview(input)
       .then((data) => {
         setReviews(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(err);
+        setLoading(false);
       });
   };
   return (
@@ -41,7 +58,7 @@ export default function Home() {
           >
             Fact
           </RoughNotation>{' '}
-          from Fiction with Lyra's Review Analysis
+          from Fiction with Lyra&apos;s Review Analysis
         </h1>
         <div className="flex flex-col w-5/6 h-2/6 p-10 gap-5 max-w-lg bg-white rounded-xl m-5 shadow-lg">
           <textarea
@@ -53,8 +70,13 @@ export default function Home() {
           <button
             onClick={fetchReview}
             className="bg-slate-800 text-white p-3 rounded shadow font-bold"
+            disabled={loading || rate >= 10}
           >
-            Search
+            {rate >= 10
+              ? 'Limit Exceeded - Try again in 1 minute'
+              : loading
+              ? 'Loading...'
+              : 'Analyze'}
           </button>
         </div>
       </section>
@@ -63,7 +85,11 @@ export default function Home() {
           <ListOfReviews reviews={reviews} />
         </ReviewFrame>
       )}
-
+      {error && (
+        <div className="flex justify-center items-center h-[80vh]">
+          <h1 className="text-3xl font-bold">{error}</h1>
+        </div>
+      )}
       <footer>
         <div className="flex flex-col justify-center items-center p-10 gap-3">
           <h1 className="text-3xl font-bold">Lyra AI</h1>
