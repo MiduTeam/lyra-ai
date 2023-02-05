@@ -1,9 +1,9 @@
 'use client';
+import ListOfReviews from '@/components/Review/ListOfReviews';
+import ReviewFrame from '@/components/ReviewFrame';
 import { Product } from '@/lib/generatePrompt';
-import { useEffect, useState } from 'react';
-import { RoughNotation, RoughNotationGroup } from 'react-rough-notation';
-import { calculateRating } from 'utils/generateRating';
-import RootLayout from './layout';
+import { useState } from 'react';
+import { RoughNotation } from 'react-rough-notation';
 
 export default function Home() {
   const year = new Date().getFullYear();
@@ -13,14 +13,14 @@ export default function Home() {
     'https%3A%2F%2Fwww.amazon.es%2FXiaomi-S-Calefactor-Inteligente-Impermeabilidad-Anti-Deslizante%2Fdp%2FB08J494KHH';
 
   const fetchReview = async () => {
-    await fetch('/api/scrapper/' + input)
+    await fetch('/api/scrapper/' + encodeURIComponent(input))
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
       });
   };
   return (
-    <>
+    <div className="bg-gradient-to-r from-[#f3f4f6] to-[#d1d5db]">
       <nav className="flex justify-between p-5 border bg-white sticky">
         <span className="font-bold">Lyra AI</span>
         <div className="flex gap-6">
@@ -29,7 +29,7 @@ export default function Home() {
           <span className="text-gray-500">Github</span>
         </div>
       </nav>
-      <section className="flex flex-col xl:flex-row gap-2 justify-around border h-[90vh] text-start items-center">
+      <section className="flex flex-col xl:flex-row gap-2 justify-around h-[80vh] text-start items-center">
         <h1 className="text-5xl  mt-8 max-w-md lg:text-7xl lg:max-w-xl font-extrabold text-black">
           Separate{' '}
           <RoughNotation
@@ -58,42 +58,12 @@ export default function Home() {
           </button>
         </div>
       </section>
-      <section
-        className={`border bg-white flex flex-col gap-4 py-10 justify-center" ${
-          reviews.length > 0 ? '' : ' hidden'
-        }`}
-      >
-        {reviews.map((review) => (
-          <div className="flex flex-col md:flex-row gap-20 p-10 justify-center">
-            <div className="flex w-full flex-col max-w-sm">
-              <h1 className="text-xl font-bold">{review?.title}</h1>
-              <p className="text-sm">{review.originalBody}</p>
-            </div>
-            <div className="flex gap-5 items-center ">
-              <div>
-                <span className="font-bold text-3xl">Original Review</span>
-                <p className="text-orange-400 font-bold text-2xl">
-                  {(review.classification.labels.OR.confidence * 100).toFixed(
-                    2,
-                  )}
-                  %
-                </p>
-                <span className="font-bold text-3xl ">Computer Generated</span>
-                <p className="text-blue-500 font-bold text-2xl">
-                  {(review.classification.labels.CG.confidence * 100).toFixed(
-                    2,
-                  )}
-                  %
-                </p>
-              </div>
-              <div>
-                <span className="font-bold ">Rating</span>
-                <p className="text-3xl">{calculateRating(review.rating)}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </section>
+      {Boolean(reviews.length) && (
+        <ReviewFrame>
+          <ListOfReviews reviews={reviews} />
+        </ReviewFrame>
+      )}
+
       <footer>
         <div className="flex flex-col justify-center items-center p-10 gap-3">
           <h1 className="text-3xl font-bold">Lyra AI</h1>
@@ -104,6 +74,6 @@ export default function Home() {
           </p>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
