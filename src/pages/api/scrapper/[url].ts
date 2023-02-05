@@ -26,8 +26,6 @@ export default async function handler(
   const productName = pathname.split('/')[1];
   const productId = pathname.split('/')[3];
 
-  const encodedProductURI = encodeURIComponent(productName);
-
   // Redirect to "https://www.amazon.es/<Product Name>/product-reviews/<Product ID>/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
   const urlToScrap = `https://www.amazon.es/${productName}/product-reviews/${productId}/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews`;
 
