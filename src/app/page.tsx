@@ -63,6 +63,7 @@ export default function Home() {
           <ListOfReviews reviews={reviews} />
         </ReviewFrame>
       )}
+
       <footer>
         <div className="flex flex-col justify-center items-center p-10 gap-3">
           <h1 className="text-3xl font-bold">Lyra AI</h1>

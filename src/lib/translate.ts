@@ -1,6 +1,7 @@
+import { env } from '@/env/server.mjs';
 import * as deepl from 'deepl-node';
 
-const authKey = process.env.DEEPL_KEY as string; // Replace with your key
+const authKey = env.DEEPL_KEY; // Replace with your key
 const translator = new deepl.Translator(authKey);
 
 export async function translate(text: string) {
