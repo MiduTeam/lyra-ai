@@ -1,8 +1,9 @@
 'use client';
+import Review from '@/components/Review';
+import ReviewFrame from '@/components/ReviewFrame';
 import { Product } from '@/lib/generatePrompt';
 import { useState } from 'react';
-import { RoughNotation, RoughNotationGroup } from 'react-rough-notation';
-import RootLayout from './layout';
+import { RoughNotation } from 'react-rough-notation';
 
 export default function Home() {
   const year = new Date().getFullYear();
@@ -19,7 +20,7 @@ export default function Home() {
       });
   };
   return (
-    <>
+    <div className="bg-gradient-to-r from-[#f3f4f6] to-[#d1d5db]">
       <nav className="flex justify-between p-5 border bg-white sticky">
         <span className="font-bold">Lyra AI</span>
         <div className="flex gap-6">
@@ -57,40 +58,20 @@ export default function Home() {
           </button>
         </div>
       </section>
+      <ReviewFrame />
       <section
         className={`border bg-white flex flex-col gap-4 py-10 justify-center" ${
           reviews.length > 0 ? '' : ' hidden'
         }`}
       >
         {reviews.map((review) => (
-          <div className="flex flex-col md:flex-row gap-20 p-10 justify-center">
-            <div className="flex w-full flex-col max-w-sm">
-              <h1 className="text-xl font-bold">{review?.title}</h1>
-              <p className="text-sm">{review.originalBody}</p>
-            </div>
-            <div className="flex gap-5 items-center ">
-              <div>
-                <span className="font-bold text-3xl">Original Review</span>
-                <p className="text-orange-400 font-bold text-2xl">
-                  {(review.classification.labels.OR.confidence * 100).toFixed(
-                    2,
-                  )}
-                  %
-                </p>
-                <span className="font-bold text-3xl ">Computer Generated</span>
-                <p className="text-blue-500 font-bold text-2xl">
-                  {(review.classification.labels.CG.confidence * 100).toFixed(
-                    2,
-                  )}
-                  %
-                </p>
-              </div>
-              <div>
-                <span className="font-bold ">Rating</span>
-                <p className="text-3xl">{'⭐️'.repeat(review.rating)}</p>
-              </div>
-            </div>
-          </div>
+          <Review
+            title={review?.title}
+            originalBody={review.originalBody}
+            ORConfidence={review.classification.labels.OR.confidence}
+            CGConfidence={review.classification.labels.CG.confidence}
+            rating={review.rating}
+          />
         ))}
       </section>
       <footer>
@@ -103,6 +84,6 @@ export default function Home() {
           </p>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
