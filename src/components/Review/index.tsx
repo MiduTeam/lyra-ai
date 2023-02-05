@@ -1,3 +1,5 @@
+import { calculateRating } from 'utils/generateRating';
+
 interface Props {
   title?: string;
   originalBody: string;
@@ -32,7 +34,7 @@ const Review = ({
         </div>
         <div>
           <span className="font-bold ">Rating</span>
-          <p className="text-3xl">{'⭐️'.repeat(rating)}</p>
+          <p className="text-3xl">{calculateRating(rating)}</p>
         </div>
       </div>
     </div>
