@@ -1,5 +1,5 @@
 'use client';
-import Review from '@/components/Review';
+import ListOfReviews from '@/components/Review/ListOfReviews';
 import ReviewFrame from '@/components/ReviewFrame';
 import { Product } from '@/lib/generatePrompt';
 import { useState } from 'react';
@@ -13,7 +13,7 @@ export default function Home() {
     'https%3A%2F%2Fwww.amazon.es%2FXiaomi-S-Calefactor-Inteligente-Impermeabilidad-Anti-Deslizante%2Fdp%2FB08J494KHH';
 
   const fetchReview = async () => {
-    await fetch('/api/scrapper/' + input)
+    await fetch('/api/scrapper/' + encodeURIComponent(input))
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -29,7 +29,7 @@ export default function Home() {
           <span className="text-gray-500">Github</span>
         </div>
       </nav>
-      <section className="flex flex-col xl:flex-row gap-2 justify-around border h-[90vh] text-start items-center">
+      <section className="flex flex-col xl:flex-row gap-2 justify-around h-[80vh] text-start items-center">
         <h1 className="text-5xl  mt-8 max-w-md lg:text-7xl lg:max-w-xl font-extrabold text-black">
           Separate{' '}
           <RoughNotation
@@ -58,22 +58,11 @@ export default function Home() {
           </button>
         </div>
       </section>
-      <ReviewFrame />
-      <section
-        className={`border bg-white flex flex-col gap-4 py-10 justify-center" ${
-          reviews.length > 0 ? '' : ' hidden'
-        }`}
-      >
-        {reviews.map((review) => (
-          <Review
-            title={review?.title}
-            originalBody={review.originalBody}
-            ORConfidence={review.classification.labels.OR.confidence}
-            CGConfidence={review.classification.labels.CG.confidence}
-            rating={review.rating}
-          />
-        ))}
-      </section>
+      {Boolean(reviews.length) && (
+        <ReviewFrame>
+          <ListOfReviews reviews={reviews} />
+        </ReviewFrame>
+      )}
       <footer>
         <div className="flex flex-col justify-center items-center p-10 gap-3">
           <h1 className="text-3xl font-bold">Lyra AI</h1>

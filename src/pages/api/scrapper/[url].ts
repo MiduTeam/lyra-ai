@@ -9,7 +9,7 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   const { url } = req.query;
-
+  console.log(url);
   if (!url) {
     console.log('Missing url');
     return res.status(400).json({ error: 'Missing url' });
@@ -25,6 +25,8 @@ export default async function handler(
   const pathname = new URL(url as string).pathname;
   const productName = pathname.split('/')[1];
   const productId = pathname.split('/')[3];
+
+  const encodedProductURI = encodeURIComponent(productName);
 
   // Redirect to "https://www.amazon.es/<Product Name>/product-reviews/<Product ID>/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
   const urlToScrap = `https://www.amazon.es/${productName}/product-reviews/${productId}/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews`;
