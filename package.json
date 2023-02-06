@@ -21,9 +21,11 @@
   "dependencies": {
     "@headlessui/react": "1.7.8",
     "@next/font": "13.1.6",
+    "@uiball/loaders": "1.2.6",
     "clsx": "1.2.1",
     "cohere-ai": "5.0.2",
     "deepl-node": "1.8.0",
+    "iconoir-react": "6.2.0",
     "next": "13.1.6",
     "playwright": "1.30.0",
     "playwright-aws-lambda": "0.9.0",
