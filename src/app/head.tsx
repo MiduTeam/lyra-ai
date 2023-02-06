@@ -21,7 +21,7 @@ export default function Head() {
       <meta name="image" property="og:image" content="/lyra-og-banner.png" />
       <meta property="og:image:width" content="1920" />
       <meta property="og:image:height" content="1080" />
-      <meta property="og:url" content="https://lyrai.vercel.app/" />
+      <meta property="og:url" content="https://lyrai.fly.dev" />
       <meta property="og:site_name" content="Lyra AI" />
       <meta
         name="author"
