@@ -63,7 +63,10 @@ export default function Home() {
         }`}
       >
         {reviews.map((review) => (
-          <div className="flex flex-col md:flex-row gap-20 p-10 justify-center">
+          <div
+            key={review.title}
+            className="flex flex-col md:flex-row gap-20 p-10 justify-center"
+          >
             <div className="flex w-full flex-col max-w-sm">
               <h1 className="text-xl font-bold">{review?.title}</h1>
               <p className="text-sm">{review.originalBody}</p>
