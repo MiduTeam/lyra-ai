@@ -8,12 +8,13 @@ interface Props {
 export default function ListOfReviews({ reviews }: Props) {
   return (
     <section
-      className={`border bg-white flex flex-col justify-center" ${
+      className={`justify-center" flex flex-col border bg-white ${
         reviews.length > 0 ? '' : ' hidden'
       }`}
     >
       {reviews.map((review) => (
         <Review
+          key={review.title}
           title={review?.title}
           originalBody={review.originalBody}
           ORConfidence={review.classification.labels.OR.confidence}

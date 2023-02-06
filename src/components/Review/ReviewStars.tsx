@@ -5,7 +5,7 @@ interface Props {
 export default function ReviewStars({ ratingStars }: Props) {
   return (
     <>
-      <span className="font-medium text-sm">Rating</span>
+      <span className="text-sm font-medium">Rating</span>
       <div className="flex">
         {ratingStars.map((star) =>
           Number(star) === 1 ? (
@@ -16,6 +16,7 @@ export default function ReviewStars({ ratingStars }: Props) {
               stroke-width="1.5"
               stroke="#CF721E"
               className="w-5 h-5"
+              key={star}
             >
               <path
                 stroke-linecap="round"
@@ -31,6 +32,7 @@ export default function ReviewStars({ ratingStars }: Props) {
               stroke-width="1.5"
               stroke="#CF721E"
               className="w-5 h-5"
+              key={star}
             >
               <path
                 stroke-linecap="round"
