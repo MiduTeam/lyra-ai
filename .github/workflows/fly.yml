@@ -1,15 +1,23 @@
-name: 🚀 Fly Deploy
+name: 🚀 Deploy to Fly
 on:
-push:
-branches:
-  - main
-env:
-FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+  push:
+    branches:
+      - main
+  env:
+    FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
 jobs:
-deploy:
-name: Deploy app
-runs-on: ubuntu-latest
-steps:
-  - uses: actions/checkout@v3
-  - uses: superfly/flyctl-actions/setup-flyctl@master
-  - run: flyctl deploy --remote-only
+  deploy:
+    name: 🚀 Deploy Lyra
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.11.0
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 📦 Deploy app
+        uses: superfly/flyctl-actions/setup-flyctl@master
+        run: flyctl deploy --remote-only
