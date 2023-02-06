@@ -16,8 +16,10 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
 
-      - name: 📦 Deploy app
+      - name: 🛠️ Setup Flyctl
         uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: 🚀 Deploy app
         run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
