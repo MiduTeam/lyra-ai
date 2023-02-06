@@ -22,8 +22,9 @@ const PRODUCTS = [
   },
   {
     id: 'B083453452',
-    img_url: 'https://m.media-amazon.com/images/I/41j41hQ6M8L._AC_SX522_.jpg',
-    url: 'https://www.amazon.es/Exprimidor-Extractor-C%C3%ADtricos-Limones-Naranjas/dp/B0B7RGKV9M/ref=sr_1_14?keywords=exprimidor+de+limones+manual&qid=1675712126&sr=8-14',
+    img_url:
+      'https://m.media-amazon.com/images/I/71ny-4Njc4L._AC_SX679_PIbundle-6,TopRight,0,0_SH20_.jpg',
+    url: 'https://www.amazon.es/D-F-L-LLC-Almohadillas-Autoadhesivas-Transparentes/dp/B07JY7SHTS?pd_rd_w=rROGD&content-id=amzn1.sym.3936b34d-eb82-485e-b4ba-c852db24bb98&pf_rd_p=3936b34d-eb82-485e-b4ba-c852db24bb98&pf_rd_r=GSGFP5BPJ6TDXS99M5Y1&pd_rd_wg=gxa2m&pd_rd_r=9ddb9e93-f72d-4989-9de4-d3407953a98b&pd_rd_i=B07JY7SHTS&psc=1&ref_=pd_bap_d_grid_rp_0_1_i',
   },
   {
     id: 'V083453452',
