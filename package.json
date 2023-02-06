@@ -9,6 +9,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "deploy": "flyctl deploy",
     "format": "prettier --write \"**/*.{js,ts,tsx,md}\"",
     "postinstall": "npx playwright install"
   },
