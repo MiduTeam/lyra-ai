@@ -7,8 +7,11 @@ import { useEffect, useState } from 'react';
 import { RoughNotation } from 'react-rough-notation';
 import { getRateLimit } from '@/lib/rateLimit';
 
+import { ChatBubbleCheck } from 'iconoir-react';
+import { JellyTriangle } from '@uiball/loaders';
+import clsx from 'clsx';
+
 export default function Home() {
-  const year = new Date().getFullYear();
   const [input, setInput] = useState<string>('');
   const [reviews, setReviews] = useState<Product[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -24,6 +27,7 @@ export default function Home() {
   }, []);
 
   const fetchReview = async () => {
+    if (input === '') return;
     setLoading(true);
     await getReview(input)
       .then((data) => {
@@ -36,18 +40,11 @@ export default function Home() {
         setLoading(false);
       });
   };
+
   return (
     <div className="bg-lyra-pattern">
-      <nav className="flex justify-between p-5 border bg-white sticky">
-        <span className="font-bold">Lyra AI</span>
-        <div className="flex gap-6">
-          <span className="text-gray-500">Home</span>
-          <span className="text-gray-500">FAQ</span>
-          <span className="text-gray-500">Github</span>
-        </div>
-      </nav>
-      <section className=" flex flex-col xl:flex-row gap-2 justify-around h-[80vh] text-start items-center">
-        <h1 className="text-5xl  mt-8 max-w-md lg:text-7xl lg:max-w-xl font-extrabold text-black">
+      <section className="flex h-[80vh] flex-col items-center justify-around gap-2 text-start xl:flex-row">
+        <h1 className="max-w-md mt-8 text-5xl font-extrabold text-black lg:max-w-xl lg:text-7xl">
           Separate{' '}
           <RoughNotation
             type="underline"
@@ -60,23 +57,34 @@ export default function Home() {
           </RoughNotation>{' '}
           from Fiction with Lyra&apos;s Review Analysis
         </h1>
-        <div className="flex flex-col w-5/6 h-2/6 p-10 gap-5 max-w-lg bg-white rounded-xl m-5 shadow-lg">
+        <div className="flex flex-col w-5/6 max-w-lg gap-5 p-10 m-5 bg-white shadow-lg h-2/6 rounded-xl">
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Input your review here or enter an Amazon product URL"
-            className="rounded p-3 border h-full border-gray-300"
+            className="h-full p-3 border border-gray-300 rounded"
           />
           <button
             onClick={fetchReview}
-            className="bg-slate-800 text-white p-3 rounded shadow font-bold"
+            className={clsx(
+              'flex items-center justify-center rounded bg-slate-800 p-3 font-medium text-white shadow',
+              loading ? 'cursor-not-allowed' : 'cursor-pointer',
+            )}
             disabled={loading || rate >= 10}
           >
-            {rate >= 10
-              ? 'Limit Exceeded - Try again in 1 minute'
-              : loading
-              ? 'Loading...'
-              : 'Analyze'}
+            {rate >= 10 ? (
+              'Limit Exceeded - Try again in 1 minute'
+            ) : loading ? (
+              <>
+                <JellyTriangle size={20} speed={1.75} color="white" />
+                <span className="ml-3">Loading...</span>
+              </>
+            ) : (
+              <>
+                <ChatBubbleCheck width={20} className="mr-2" />
+                Analyze
+              </>
+            )}
           </button>
         </div>
       </section>
@@ -86,20 +94,10 @@ export default function Home() {
         </ReviewFrame>
       )}
       {error && (
-        <div className="flex justify-center items-center h-[80vh]">
+        <div className="flex h-[80vh] items-center justify-center">
           <h1 className="text-3xl font-bold">{error}</h1>
         </div>
       )}
-      <footer>
-        <div className="flex flex-col justify-center items-center p-10 gap-3">
-          <h1 className="text-3xl font-bold">Lyra AI</h1>
-          <p className="text-sm">
-            {' '}
-            {year} Lyra AI. Developed with 💜 by @ikurotime - @afor_digital -
-            @SrDrabx - @pheralb_ - @TMCheiN.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
