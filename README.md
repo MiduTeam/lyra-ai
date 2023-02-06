@@ -1,14 +1,14 @@
 <div align="center">
 
 <!--
-<a href="lyrai.vercel.app">
+<a href="lyrai.fly.dev">
 <img src="./public/img/banner_gh.jpg" />
 </a>
 -->
 
 <p></p>
 
-<a href="https://lyrai.vercel.app">Explore</a>
+<a href="https://lyrai.fly.dev">Explore</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
 <a href="#-getting-started">Getting Started</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
@@ -38,6 +38,7 @@
 - [**Tailwind CSS + clsx**](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs.
 - [**Prettier + prettier-plugin-tailwindcss**](https://prettier.io/) - A Prettier plugin for sorting Tailwind CSS classes.
 - [**HeadlessUI**](https://headlessui.dev/) - unstyled, fully accessible UI components.
+- [**Iconoir** icons](https://iconoir.com/) - A set of 1000+ free MIT-licensed high-quality SVG icons for you to use in your web projects.
 - [**Playwright**](https://playwright.dev/) - Node library to automate Chromium, Firefox and WebKit with a single API.
 - [**Zod**](https://zod.dev/) - TypeScript-first schema validation.
 
@@ -99,6 +100,6 @@ ultra dev
 
 <p></p>
 
-## ☁️ Deploy on Vercel
+## ☁️ Deploy on [Fly](https://fly.io/)
 
-- [https://lyrai.vercel.app/](https://lyrai.vercel.app/).
+- [https://lyrai.fly.dev/](https://lyrai.fly.dev/).
