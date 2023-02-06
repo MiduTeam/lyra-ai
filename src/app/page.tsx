@@ -10,6 +10,7 @@ import { getRateLimit } from '@/lib/rateLimit';
 import { ChatBubbleCheck } from 'iconoir-react';
 import { JellyTriangle } from '@uiball/loaders';
 import clsx from 'clsx';
+import Input from '@/components/Input/Input';
 
 export default function Home() {
   const [input, setInput] = useState<string>('');
@@ -57,36 +58,13 @@ export default function Home() {
           </RoughNotation>{' '}
           from Fiction with Lyra&apos;s Review Analysis
         </h1>
-        <div className="flex flex-col w-5/6 max-w-lg gap-5 p-10 m-5 bg-white shadow-lg h-2/6 rounded-xl">
-          <textarea
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Input your review here or enter an Amazon product URL"
-            className="h-full p-3 border border-gray-300 rounded"
-          />
-          <button
-            onClick={fetchReview}
-            className={clsx(
-              'flex items-center justify-center rounded bg-slate-800 p-3 font-medium text-white shadow',
-              loading ? 'cursor-not-allowed' : 'cursor-pointer',
-            )}
-            disabled={loading || rate >= 10}
-          >
-            {rate >= 10 ? (
-              'Limit Exceeded - Try again in 1 minute'
-            ) : loading ? (
-              <>
-                <JellyTriangle size={20} speed={1.75} color="white" />
-                <span className="ml-3">Loading...</span>
-              </>
-            ) : (
-              <>
-                <ChatBubbleCheck width={20} className="mr-2" />
-                Analyze
-              </>
-            )}
-          </button>
-        </div>
+        <Input
+          input={input}
+          setInput={setInput}
+          fetchReview={fetchReview}
+          loading={loading}
+          rate={rate}
+        />
       </section>
       {Boolean(reviews.length) && (
         <ReviewFrame>
