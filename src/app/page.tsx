@@ -37,7 +37,7 @@ export default function Home() {
       });
   };
   return (
-    <div className="bg-gradient-to-r from-[#f3f4f6] to-[#d1d5db]">
+    <div className="bg-lyra-pattern">
       <nav className="flex justify-between p-5 border bg-white sticky">
         <span className="font-bold">Lyra AI</span>
         <div className="flex gap-6">
@@ -46,7 +46,7 @@ export default function Home() {
           <span className="text-gray-500">Github</span>
         </div>
       </nav>
-      <section className="flex flex-col xl:flex-row gap-2 justify-around h-[80vh] text-start items-center">
+      <section className=" flex flex-col xl:flex-row gap-2 justify-around h-[80vh] text-start items-center">
         <h1 className="text-5xl  mt-8 max-w-md lg:text-7xl lg:max-w-xl font-extrabold text-black">
           Separate{' '}
           <RoughNotation
