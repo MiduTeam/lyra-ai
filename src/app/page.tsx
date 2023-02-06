@@ -1,25 +1,43 @@
 'use client';
-import { Product } from '@/lib/generatePrompt';
-import { useState } from 'react';
-import { RoughNotation, RoughNotationGroup } from 'react-rough-notation';
-import RootLayout from './layout';
+import type { Product } from '@/lib/generatePrompt';
+import ListOfReviews from '@/components/Review/ListOfReviews';
+import ReviewFrame from '@/components/ReviewFrame';
+import { getReview } from '@/lib/fetchReview';
+import { useEffect, useState } from 'react';
+import { RoughNotation } from 'react-rough-notation';
+import { getRateLimit } from '@/lib/rateLimit';
 
 export default function Home() {
   const year = new Date().getFullYear();
   const [input, setInput] = useState<string>('');
   const [reviews, setReviews] = useState<Product[]>([]);
-  const url =
-    'https%3A%2F%2Fwww.amazon.es%2FXiaomi-S-Calefactor-Inteligente-Impermeabilidad-Anti-Deslizante%2Fdp%2FB08J494KHH';
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [rate, setRateLimit] = useState<number>(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const rate = getRateLimit();
+      setRateLimit(rate);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const fetchReview = async () => {
-    await fetch('/api/scrapper/' + input)
-      .then((res) => res.json())
+    setLoading(true);
+    await getReview(input)
       .then((data) => {
         setReviews(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(err);
+        setLoading(false);
       });
   };
   return (
-    <>
+    <div className="bg-lyra-pattern">
       <nav className="flex justify-between p-5 border bg-white sticky">
         <span className="font-bold">Lyra AI</span>
         <div className="flex gap-6">
@@ -28,7 +46,7 @@ export default function Home() {
           <span className="text-gray-500">Github</span>
         </div>
       </nav>
-      <section className="flex flex-col xl:flex-row gap-2 justify-around border h-[90vh] text-start items-center">
+      <section className=" flex flex-col xl:flex-row gap-2 justify-around h-[80vh] text-start items-center">
         <h1 className="text-5xl  mt-8 max-w-md lg:text-7xl lg:max-w-xl font-extrabold text-black">
           Separate{' '}
           <RoughNotation
@@ -40,7 +58,7 @@ export default function Home() {
           >
             Fact
           </RoughNotation>{' '}
-          from Fiction with Lyra's Review Analysis
+          from Fiction with Lyra&apos;s Review Analysis
         </h1>
         <div className="flex flex-col w-5/6 h-2/6 p-10 gap-5 max-w-lg bg-white rounded-xl m-5 shadow-lg">
           <textarea
@@ -52,60 +70,36 @@ export default function Home() {
           <button
             onClick={fetchReview}
             className="bg-slate-800 text-white p-3 rounded shadow font-bold"
+            disabled={loading || rate >= 10}
           >
-            Search
+            {rate >= 10
+              ? 'Limit Exceeded - Try again in 1 minute'
+              : loading
+              ? 'Loading...'
+              : 'Analyze'}
           </button>
         </div>
       </section>
-      <section
-        className={`border bg-white flex flex-col gap-4 py-10 justify-center" ${
-          reviews.length > 0 ? '' : ' hidden'
-        }`}
-      >
-        {reviews.map((review) => (
-          <div
-            key={review.title}
-            className="flex flex-col md:flex-row gap-20 p-10 justify-center"
-          >
-            <div className="flex w-full flex-col max-w-sm">
-              <h1 className="text-xl font-bold">{review?.title}</h1>
-              <p className="text-sm">{review.originalBody}</p>
-            </div>
-            <div className="flex gap-5 items-center ">
-              <div>
-                <span className="font-bold text-3xl">Original Review</span>
-                <p className="text-orange-400 font-bold text-2xl">
-                  {(review.classification.labels.OR.confidence * 100).toFixed(
-                    2,
-                  )}
-                  %
-                </p>
-                <span className="font-bold text-3xl ">Computer Generated</span>
-                <p className="text-blue-500 font-bold text-2xl">
-                  {(review.classification.labels.CG.confidence * 100).toFixed(
-                    2,
-                  )}
-                  %
-                </p>
-              </div>
-              <div>
-                <span className="font-bold ">Rating</span>
-                <p className="text-3xl">{'⭐️'.repeat(review.rating)}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </section>
+      {Boolean(reviews.length) && (
+        <ReviewFrame>
+          <ListOfReviews reviews={reviews} />
+        </ReviewFrame>
+      )}
+      {error && (
+        <div className="flex justify-center items-center h-[80vh]">
+          <h1 className="text-3xl font-bold">{error}</h1>
+        </div>
+      )}
       <footer>
         <div className="flex flex-col justify-center items-center p-10 gap-3">
           <h1 className="text-3xl font-bold">Lyra AI</h1>
           <p className="text-sm">
             {' '}
             {year} Lyra AI. Developed with 💜 by @ikurotime - @afor_digital -
-            @SrDrabx - @pheralb_ - @TMChein.
+            @SrDrabx - @pheralb_ - @TMCheiN.
           </p>
         </div>
       </footer>
-    </>
+    </div>
   );
 }

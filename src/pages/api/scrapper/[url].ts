@@ -9,7 +9,7 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   const { url } = req.query;
-
+  console.log(url);
   if (!url) {
     console.log('Missing url');
     return res.status(400).json({ error: 'Missing url' });

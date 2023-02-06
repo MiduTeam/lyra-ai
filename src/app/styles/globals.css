@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-html {
+/* html {
   background-color: #ffffff;
   opacity: 0.8;
   background-image: linear-gradient(
@@ -9,4 +9,4 @@ html {
     rgb(243, 244, 246),
     rgb(209, 213, 219)
   );
-}
+} */
