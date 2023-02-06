@@ -1,10 +1,9 @@
 <div align="center">
 
-<!--
+
 <a href="lyrai.fly.dev">
-<img src="./public/img/banner_gh.jpg" />
+<img src="./public/lyra-ai-screen.png" />
 </a>
--->
 
 <p></p>
 
