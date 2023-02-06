@@ -39,7 +39,7 @@ export default function Input({
   rate,
 }: Props) {
   return (
-    <div className="flex flex-col w-5/6 max-w-lg gap-5 p-10 m-5 bg-white shadow-lg max-h-[50%]  rounded-xl">
+    <div className="flex flex-col w-5/6 max-w-lg gap-5 p-10 -m-20 md:m-5 bg-white shadow-lg max-h-[50%]  rounded-xl">
       <textarea
         value={input}
         onChange={(e) => setInput(e.target.value)}
