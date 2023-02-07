@@ -5,6 +5,8 @@ const app = express();
 
 dotenv.config();
 
+const port = process.env.PORT || 3001;
+
 app.get("/", (req, res) => {
 	res.send("Hello World!");
 });
@@ -14,6 +16,6 @@ app.get("/scrapper/:url", (req, res) => {
 	return scrapper(url, res);
 });
 
-app.listen(3001, () => {
-	console.log("Server started on port 3001");
+app.listen(process.env.port, () => {
+	console.log(`Server started on port ${port}`);
 });
