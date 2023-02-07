@@ -1,10 +1,11 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
+import mCache from "memory-cache";
 import { scrapper } from "./scrapper";
 import dotenv from "dotenv";
 const app = express();
 
-const allowList = ["http://localhost:3000", "https://lyrai.fly.dev"];
+const allowList = ["https://lyrai.fly.dev"];
 
 dotenv.config();
 
@@ -22,13 +23,35 @@ app.use(
 	}),
 );
 
+const cache = (duration: number) => {
+	return (req, res, next) => {
+		let key = `__express__${req.originalUrl}` || req.url;
+		let cachedBody = mCache.get(key);
+		if (cachedBody) {
+			res.send(cachedBody);
+			return;
+		} else {
+			res.sendResponse = res.send;
+			res.send = (body: any) => {
+				mCache.put(key, body, duration * 1000);
+				res.sendResponse(body);
+			};
+			next();
+		}
+	};
+};
+
 app.get("/", (req, res) => {
 	res.send("Hello World!");
 });
 
-app.get("/scrapper/:url", (req, res) => {
+app.get("/scrapper/:url", cache(600), (req, res) => {
 	const { url } = req.params;
 	return scrapper(url, res);
+});
+
+app.get("/test", cache(10), (req, res) => {
+	res.send(`This response was cached! ${new Date()}`);
 });
 
 app.listen(port, () => {
