@@ -7,7 +7,9 @@ export async function getReview(url: string) {
 	if (rateLimitExceeded) {
 		throw new Error("Rate limit exceeded");
 	}
-	const response = await fetch(`/api/scrapper/${encodeURIComponent(url)}`);
+	const response = await fetch(
+		`https://lyra-api.up.railway.app/scrapper/${encodeURIComponent(url)}`,
+	);
 	const review: Product[] = await response.json();
 	return review;
 }
