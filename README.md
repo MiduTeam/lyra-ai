@@ -84,16 +84,6 @@ ultra dev
 
 ✨ Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 📦 Api Routes
-
-- **Check**: `src/pages/api`
-
-| --  | Type   | Url                        | Description             | Params                | Info                                               |
-| --- | ------ | -------------------------- | ----------------------- | --------------------- | -------------------------------------------------- |
-| ⚙️  | `GET`  | `/api/scrapper/`           | Scrap Amazon website    | `url`                 | 🛠️ Only [encoded](https://www.urlencoder.org/) url |
-| ⚙️  | `GET`  | `/api/get-screen/`         | Get screenshot          | `url`                 | -                                                  |
-| ⚙️  | `POST` | `/api/get-classification/` | Get classification list | `product`, `category` | -                                                  |
-
 ## ⭐ Contributing
 
 <a href="https://github.com/miduteam/lyra-ai/graphs/contributors">
