@@ -1,13 +1,26 @@
 import express from "express";
+import cors from "cors";
 import { scrapper } from "./scrapper";
 import dotenv from "dotenv";
 const app = express();
+
+const allowList = ["http://localhost:3000", "https://lyrai.fly.dev"];
 
 dotenv.config();
 
 const port = process.env.PORT || 3001;
 
-console.log(process.env.PORT);
+app.use(
+	cors({
+		origin: (origin, callback) => {
+			if (allowList.includes(origin)) {
+				callback(null, true);
+			} else {
+				callback(new Error("Not allowed by CORS"));
+			}
+		},
+	}),
+);
 
 app.get("/", (req, res) => {
 	res.send("Hello World!");
