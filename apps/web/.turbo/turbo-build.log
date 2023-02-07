@@ -1,0 +1,42 @@
+
+> lyra-ai@0.1.0 build /Users/nacho/Documents/code/lyra-ai/apps/web
+> next build
+
+warn  - You have enabled experimental feature (appDir) in next.config.mjs.
+warn  - Experimental features are not covered by semver, and may cause unexpected or broken application behavior. Use at your own risk.
+info  - Thank you for testing `appDir` please leave your feedback at https://nextjs.link/app-feedback
+
+info  - Creating an optimized production build...
+info  - Compiled successfully
+info  - Linting and checking validity of types...
+info  - VS Code settings.json has been created for Next.js' automatic app types, this file can be added to .gitignore if desired
+
+./src/components/Input/Input.tsx
+82:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Use `<Image />` from `next/image` instead to utilize Image Optimization. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+info  - Collecting page data...
+info  - Generating static pages (0/3)
+info  - Generating static pages (3/3)
+info  - Finalizing page optimization...
+
+Route (app)                                Size     First Load JS
+─ ○ /                                      0 B                0 B
++ First Load JS shared by all              82.7 kB
+  ├ chunks/475-dedc3d9f3569637b.js         80.4 kB
+  ├ chunks/main-app-e96b5301d6ba91dc.js    218 B
+  └ chunks/webpack-4d47748796f46a43.js     2.06 kB
+
+Route (pages)                              Size     First Load JS
+┌ ○ /404                                   179 B          81.2 kB
+├ λ /api/get-classification                0 B              81 kB
+├ λ /api/get-screen                        0 B              81 kB
+└ λ /api/scrapper/[url]                    0 B              81 kB
++ First Load JS shared by all              81 kB
+  ├ chunks/main-76206e00aae19072.js        78.8 kB
+  ├ chunks/pages/_app-f8920616ab31aec1.js  191 B
+  └ chunks/webpack-4d47748796f46a43.js     2.06 kB
+
+λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+
