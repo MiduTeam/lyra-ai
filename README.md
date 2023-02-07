@@ -1,17 +1,18 @@
 <div align="center">
 
-
-<a href="https://lyrai.pages.dev">
+<a href="https://lyrai.fly.dev">
 <img src="./apps/web/public/lyra-ai-screen.png" />
 </a>
 
 <p></p>
 
-<a href="https://lyrai.pages.dev">Explore</a>
+<a href="https://lyrai.fly.dev">Explore</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
 <a href="#-getting-started">Getting Started</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
-<a href="#-api-routes">Api Routes</a>
+<a href="#-team">Team</a>
+<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
+<a href="#%EF%B8%8F-deploy">Deploy</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
 <a href="https://midu.dev/">midudev Hackathon</a>
 
@@ -103,5 +104,5 @@ ultra dev
 
 ## ☁️ Deploy:
 
-- Frontend on **Cloudflare Pages**: [https://lyrai.pages.dev](https://lyrai.pages.dev).
+- Frontend on **Fly**: [https://lyrai.fly.dev](https://lyrai.fly.dev).
 - Backend on **Railway**: [https://lyra-api.up.railway.app/](https://lyra-api.up.railway.app).
