@@ -14,7 +14,7 @@ export default defineNextConfig({
   reactStrictMode: true,
   swcMinify: true,
   experimental: {
-    // runtime: 'experimental-edge',
+    runtime: 'edge',
     appDir: true,
   },
 });
