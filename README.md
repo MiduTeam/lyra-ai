@@ -1,13 +1,13 @@
 <div align="center">
 
 
-<a href="lyrai.fly.dev">
-<img src="./public/lyra-ai-screen.png" />
+<a href="https://lyrai.pages.dev">
+<img src="./apps/web/public/lyra-ai-screen.png" />
 </a>
 
 <p></p>
 
-<a href="https://lyrai.fly.dev">Explore</a>
+<a href="https://lyrai.pages.dev">Explore</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
 <a href="#-getting-started">Getting Started</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
@@ -31,6 +31,8 @@
 - [**@tmchein**](https://github.com/tmchein) - Juan Rojas.
 
 ## 🛠️ Stack
+
+This is a **Turborepo** project with:
 
 - [**Cohere**](https://cohere.ai/) - Making NLP part of every developer's toolkit.
 - [**Next.js 13 with /app folder + Typescript**](https://nextjs.org/) - The React Framework.
@@ -99,6 +101,7 @@ ultra dev
 
 <p></p>
 
-## ☁️ Deploy on [Fly](https://fly.io/)
+## ☁️ Deploy:
 
-- [https://lyrai.fly.dev/](https://lyrai.fly.dev/).
+- Frontend on **Cloudflare Pages**: [https://lyrai.pages.dev](https://lyrai.pages.dev).
+- Backend on **Railway**: [https://lyra-api.up.railway.app/](https://lyra-api.up.railway.app).
