@@ -1,23 +1,23 @@
-import { getClassification } from "@/lib/cohere";
-import { generatePrompt } from "@/lib/generatePrompt";
-import { translate } from "@/lib/translate";
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { Response } from "express";
 import * as playwright from "playwright-aws-lambda";
+import { translate } from "./utils/translate";
+import { generatePrompt } from "./utils/generatePrompt";
+import { getClassification } from "./utils/cohere";
 
-export default async function handler(
-	req: NextApiRequest,
-	res: NextApiResponse,
-) {
-	const { url } = req.query;
+export async function scrapper(url: string, res: Response) {
 	if (!url) {
 		console.log("Missing url");
-		return res.status(400).json({ error: "Missing url" });
+		res.status(400).send({
+			error: "Missing url",
+		});
 	}
 
 	// Hostname of the url should be *.amazon.*
 	const hostname = new URL(url as string).hostname;
 	if (!hostname.includes("amazon")) {
-		return res.status(400).json({ error: "Not an Amazon URL" });
+		res.status(400).send({
+			error: "Not an Amazon URL",
+		});
 	}
 
 	const browser = await playwright.launchChromium({ headless: true });
@@ -31,7 +31,7 @@ export default async function handler(
 	// Get all data-hook="review" elements
 	const reviews = await page.$$('[data-hook="review"]');
 
-	const data = [];
+	const data: any[] = [];
 	for (const review of reviews) {
 		// Get the review body from data-hook="review-body" > span
 		const reviewBody = await review
@@ -86,11 +86,10 @@ export default async function handler(
 		});
 	}
 
-	// Send the data to the client
-	res.status(200).json(data);
-
 	// Close browser
 	await browser.close();
+
+	res.json(data);
 }
 
 function parseRating(rating: string) {

@@ -1,0 +1,40 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsup",
+    "start": "node dist/index.js",
+    "postinstall": "npx playwright install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "target": "node12",
+    "format": [
+      "esm"
+    ],
+    "splitting": false,
+    "sourcemap": true,
+    "clean": true
+  },
+  "dependencies": {
+    "cohere-ai": "5.0.2",
+    "deepl-node": "1.8.0",
+    "dotenv": "^16.0.3",
+    "express": "4.18.2",
+    "playwright": "1.30.0",
+    "playwright-aws-lambda": "0.9.0",
+    "playwright-core": "1.30.0"
+  },
+  "devDependencies": {
+    "@types/express": "4.17.17",
+    "tsup": "6.5.0"
+  }
+}

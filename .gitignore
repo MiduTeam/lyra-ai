@@ -1,20 +1,21 @@
 # dependencies:
-/node_modules
+node_modules
 /.pnp
 .pnp.js
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+ultra.lock
 
 # testing:
 /coverage
 
 # next.js:
-/.next/
-/out/
+.next/
+out/
 
 # production:
-/build
+build/
 
 # misc:
 .DS_Store
@@ -32,6 +33,8 @@ yarn-error.log*
 
 # vercel:
 .vercel
+
+dist
 
 # typescript:
 *.tsbuildinfo

@@ -6,10 +6,6 @@ import { getReview } from '@/lib/fetchReview';
 import { useEffect, useState } from 'react';
 import { RoughNotation } from 'react-rough-notation';
 import { getRateLimit } from '@/lib/rateLimit';
-
-import { ChatBubbleCheck } from 'iconoir-react';
-import { JellyTriangle } from '@uiball/loaders';
-import clsx from 'clsx';
 import Input from '@/components/Input/Input';
 
 export default function Home() {
